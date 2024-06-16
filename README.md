@@ -20,3 +20,27 @@ User authorization is the process of determining what an authenticated user is a
 - Permission Assignment: Assign permissions to roles or directly to users.
 - Role Assignment: Assign roles to users, determining their access level.
 - Access Checks: When a user tries to perform an action or access a resource, the system checks their roles and permissions to determine if the action is allowed.
+
+## Workflow
+
+1. User Registration (Backend):
+
+A user registers via a form on the React frontend.
+The form data is sent to the Django backend, where a new user is created and stored in the database.
+2. User Login (Backend):
+
+The user logs in via a React form.
+The credentials are sent to the Django backend.
+Django verifies the credentials and, upon success, issues a JWT token.
+3. Token Handling (Frontend):
+
+The JWT token is stored securely on the client side (e.g., in HTTP-only cookies or local storage with proper security measures).
+The token is included in the Authorization header of subsequent requests to protected endpoints.
+4. Protected Routes (Frontend):
+
+React checks if the user is authenticated (i.e., has a valid token) before allowing access to protected routes.
+Routes can also check user roles/permissions to further restrict access.
+5. Authorization Checks (Backend):
+
+When the frontend makes requests to protected endpoints, the Django backend verifies the JWT token.
+Django checks the user's roles and permissions to authorize the requested action or access to the resource.
